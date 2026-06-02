@@ -39,7 +39,7 @@ class TestTaskmate < Test::Unit::TestCase
   def test_rebuild_files_exists
     @taskmate.rebuild_files
     filename = "#{@@dir}/@c1.todo"
-    assert File.exists?(filename), "file was not created: #{@@dir}/@c1.todo"
+    assert File.exist?(filename), "file was not created: #{@@dir}/@c1.todo"
   end
   
   def test_item_parsing

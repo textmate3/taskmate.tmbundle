@@ -61,7 +61,7 @@ class Taskmate
   
   def marshal_dir
     dir = File.dirname(__FILE__) + '/../data/' # TODO use the tmp directory
-    Dir.mkdir(dir) unless File.exists?(dir)
+    Dir.mkdir(dir) unless File.exist?(dir)
     dir
   end 
   
@@ -196,7 +196,7 @@ class Taskmate
     filenames = item.tags.collect { |tag| "#{@dir}/#{tag}.todo" }
     source = find_item_source(item)
     filenames << source.filename unless source.nil?
-    filenames.select { |filename| File.exists?(filename) }
+    filenames.select { |filename| File.exist?(filename) }
   end
   
   def find_project_source(project)
