@@ -16,23 +16,25 @@ class TestTaskmate < Test::Unit::TestCase
    File.open("#{@@dir}/#{name}.todo") {|f| f.read }.strip
   end
 
+  # Source discovery order is Dir.glob order, which Ruby sorts since 3.0 —
+  # so subdir/test_2.todo comes before test_1.todo.
   def test_sources_filenames
     filenames = @taskmate.sources.collect{|source| source.filename}
-    assert_equal ["#{@@dir}/test_1.todo", "#{@@dir}/subdir/test_2.todo"], filenames
+    assert_equal ["#{@@dir}/subdir/test_2.todo", "#{@@dir}/test_1.todo"], filenames
   end
-  
+
   def test_project_names
-    projects = @taskmate.sources.collect{ |file| file.projects }.flatten.collect{ |p| p.name }    
-    assert_equal ['Project 1', 'Project 2'], projects
+    projects = @taskmate.sources.collect{ |file| file.projects }.flatten.collect{ |p| p.name }
+    assert_equal ['Project 2', 'Project 1'], projects
   end
-  
+
   def test_project_items
-    items = @taskmate.sources[0].projects[0].items.collect { |i| i.text }
+    items = @taskmate.sources[1].projects[0].items.collect { |i| i.text }
     assert_equal ['foo bar', 'baz'], items
   end
-  
+
   def test_project_item_tags
-    tags = @taskmate.sources[0].projects[0].items[0].tags
+    tags = @taskmate.sources[1].projects[0].items[0].tags
     assert_equal [:@c1, :@c2], tags
   end
   
