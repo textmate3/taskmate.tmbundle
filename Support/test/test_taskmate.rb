@@ -1,5 +1,5 @@
 require 'test/unit' unless defined? $ZENTEST and $ZENTEST
-require 'lib/taskmate.rb'
+require_relative '../lib/taskmate'
 
 class TestTaskmate < Test::Unit::TestCase  
   @@dir = './test/data'
