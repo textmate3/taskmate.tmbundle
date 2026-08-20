@@ -11,7 +11,7 @@ class Taskmate
     end
     
     def initialize(str, project = nil)
-      str = str.clone
+      str = str.dup
       @tags = []
       str.sub!(/@completed\s*\(([\d\w\-\.:\/ ]*)\)\s*$/, '')
       @completed = $1
