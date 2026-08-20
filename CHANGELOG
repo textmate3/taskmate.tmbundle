@@ -1,3 +1,10 @@
+Taskmate 0.2 (unreleased)
+
++ fixed item text extraction, broken since Ruby 1.9: the (.*)* pattern always captured an empty string under the Oniguruma regular expression engine
++ made the test suite run on modern Ruby (verified on 4.0.6): require_relative instead of load-path-dependent require, expectations updated for sorted Dir.glob order (Ruby 3.0+)
++ removed the accidentally committed generated file test/data/@completed.todo; test runs no longer modify the working tree
++ prepared string parsing for frozen string literals (dup instead of clone in Item)
+
 Taskmate 0.1 (review release)
 
 + added an Add Tag command with a popup to choose from available tags
