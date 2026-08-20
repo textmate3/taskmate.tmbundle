@@ -12,8 +12,8 @@ class Taskmate
     
   PATTERNS = {
     :project => /^\s*[^:\n]{1,99}:[ \t]*$/,
-    :item => /^\s*[-✓+]+\s*.+$/,      # TODO used in source.rb and item.rb 
-    :item_text => "^[-✓+]+\s*(.*)*$"  # respectively. can they be unified?
+    :item => /^\s*[-✓+]+\s*.+$/,      # TODO used in source.rb and item.rb
+    :item_text => "^[-✓+]+\s*(.*)$"   # respectively. can they be unified?
   }
   
   class << self
