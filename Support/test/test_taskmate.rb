@@ -2,7 +2,7 @@ require 'test/unit' unless defined? $ZENTEST and $ZENTEST
 require_relative '../lib/taskmate'
 
 class TestTaskmate < Test::Unit::TestCase  
-  @@dir = './test/data'
+  @@dir = File.expand_path('data', __dir__)
   
   def setup
     @taskmate = Taskmate.new(@@dir)
