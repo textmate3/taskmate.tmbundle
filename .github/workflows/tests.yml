@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: macos-26
+    env:
+      TM_SUPPORT_PATH: ${{ github.workspace }}/bundle-support.tmbundle/Support/shared
+      TM_BUNDLE_SUPPORT: ${{ github.workspace }}/Support
+      TM_BUNDLE_PATH: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v7
+      # The shared library every bundle's Ruby code requires through TM_SUPPORT_PATH.
+      # That repository is private, so this checkout needs a token that can read it:
+      # an organization secret named BUNDLE_SUPPORT_TOKEN holding a fine grained
+      # personal access token with contents read on bundle-support.tmbundle.
+      - uses: actions/checkout@v7
+        with:
+          repository: textmate3/bundle-support.tmbundle
+          path: bundle-support.tmbundle
+          token: ${{ secrets.BUNDLE_SUPPORT_TOKEN || github.token }}
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0"
+      - run: ruby Support/test/test_taskmate.rb
+
