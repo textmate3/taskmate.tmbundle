@@ -13,11 +13,13 @@ jobs:
       TM_BUNDLE_PATH: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v7
-      # The shared library every bundle's Ruby code requires through TM_SUPPORT_PATH.
+      # The shared library every bundle's Ruby code requires through TM_SUPPORT_PATH,
+      # with its vendored CFPropertyList, which is a submodule.
       - uses: actions/checkout@v7
         with:
           repository: textmate3/bundle-support.tmbundle
           path: bundle-support.tmbundle
+          submodules: true
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "4.0"
