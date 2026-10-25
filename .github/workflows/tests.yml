@@ -22,6 +22,6 @@ jobs:
           submodules: true
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "4.0"
+          ruby-version: .ruby-version
       - run: ruby Support/test/test_taskmate.rb
 
